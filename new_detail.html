@@ -1,0 +1,295 @@
+<!-- Route Detail: Middel of Nowhere Puzzelrit -->
+<!DOCTYPE html>
+
+<html class="light" lang="nl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Middel of Nowhere - Salland Auto Puzzelrit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Manrope:wght@200..800&amp;family=Plus+Jakarta+Sans:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#c4efa3",
+              "tertiary-fixed": "#66ff8e",
+              "surface-container-highest": "#e6e2d6",
+              "on-secondary-fixed-variant": "#6b3b00",
+              "secondary": "#8d4f00",
+              "on-surface": "#1d1c14",
+              "surface-container-high": "#ece8dc",
+              "inverse-primary": "#a8d38a",
+              "secondary-fixed-dim": "#ffb876",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#e6e2d6",
+              "on-primary-fixed-variant": "#2c4f15",
+              "error": "#ba1a1a",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#3de273",
+              "surface": "#fef9ec",
+              "secondary-container": "#fda141",
+              "primary-container": "#2d5016",
+              "on-surface-variant": "#43493d",
+              "outline-variant": "#c3c9b9",
+              "primary": "#173901",
+              "surface-container": "#f2eee1",
+              "outline": "#73796c",
+              "on-tertiary-container": "#20d064",
+              "on-secondary-container": "#6c3b00",
+              "surface-bright": "#fef9ec",
+              "inverse-on-surface": "#f5f1e4",
+              "on-error": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#002109",
+              "inverse-surface": "#323128",
+              "on-secondary-fixed": "#2d1600",
+              "background": "#fef9ec",
+              "on-primary-fixed": "#0a2100",
+              "primary-fixed-dim": "#a8d38a",
+              "on-primary-container": "#98c27b",
+              "surface-container-low": "#f8f3e7",
+              "secondary-fixed": "#ffdcc0",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#005322",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#005322",
+              "surface-tint": "#43682b",
+              "surface-dim": "#dedace",
+              "tertiary": "#003915",
+              "on-background": "#1d1c14"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.bg-hero-texture {
+    background-image: linear-gradient(to bottom, rgba(23, 57, 1, 0.7), rgba(23, 57, 1, 0.4)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuCvwjpUTSQcrji6D83dTY0smV3JVZOubXVxLT7YWcIdmNCHGLFEAUheSUkr2hmoJPagF9rmFWaUGpUGfRvz_Q2h9LiEarRNKJTAg3_QdA9fCCcNnS3wiQ2UPd19o7o-cOxyknsTwQ11kpFiEEnPZZk0WIS6RHurccDu35bZTsikC9UNQBlEX1W0UMZt3uJKv_40W1A6csbshRNqUcU4dkAN-rz2UeMzUBw2hiSffeZT1MT3DZsRjPj50Q48UbK6ek5lIUeS4Svg49OG);
+    background-size: cover;
+    background-position: center
+    }</style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-[#FEF9EC] dark:bg-[#121212] shadow-[0px_20px_40px_rgba(29,28,20,0.06)] fixed top-0 left-0 right-0 z-50">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<a class="text-2xl font-bold tracking-tight text-[#173901] dark:text-[#FEF9EC] font-headline" href="#">Middel of Nowhere</a>
+<nav class="hidden md:flex items-center gap-8 font-label">
+<a class="text-[#2D5016] dark:text-[#A0A0A0] font-medium hover:text-[#8D4F00] transition-colors duration-300" href="new_home.html">Home</a>
+<a class="text-[#173901] dark:text-[#FEF9EC] font-bold border-b-2 border-[#8D4F00] pb-1 hover:text-[#8D4F00] transition-colors duration-300" href="#">De Route</a>
+<a class="text-[#2D5016] dark:text-[#A0A0A0] font-medium hover:text-[#8D4F00] transition-colors duration-300" href="new_about.html">Over Ons</a>
+</nav>
+<button class="bg-primary-container text-on-primary px-6 py-2 rounded-xl font-label font-bold hover:scale-[1.02] transition-transform duration-200">Bestel Nu</button>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[819px] flex items-center justify-center overflow-hidden bg-hero-texture" data-alt="vintage open-top classic car driving through a sun-drenched rural landscape in Salland with lush green fields and warm morning light">
+<div class="max-w-7xl mx-auto px-8 w-full text-center relative z-10">
+<p class="text-on-primary-container font-label uppercase tracking-[0.2em] mb-4 font-bold">Salland Auto Puzzelrit</p>
+<h1 class="text-white font-headline text-5xl md:text-7xl font-bold mb-6 tracking-tight">Middel of Nowhere</h1>
+<div class="flex flex-wrap justify-center gap-4">
+<span class="bg-secondary text-on-primary px-4 py-1 rounded-full font-label text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">location_on</span> Regio Salland
+                    </span>
+<span class="bg-surface-container-low text-primary px-4 py-1 rounded-full font-label text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">schedule</span> 2 - 3 Uur
+                    </span>
+</div>
+</div>
+</section>
+<!-- The Experience Selling Points -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="p-8 bg-surface-container-low rounded-xl group hover:bg-surface-container transition-colors duration-500">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4">timer</span>
+<h3 class="font-headline text-xl font-bold text-primary mb-2">Op jouw tempo</h3>
+<p class="text-on-surface-variant font-body">Rijd wanneer het jou uitkomt, in je eigen auto. Geen deadlines, geen tijdsdruk — zoveel koffiepauzes als je wilt.</p>
+</div>
+<div class="p-8 bg-surface-container-low rounded-xl group hover:bg-surface-container transition-colors duration-500">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4">forest</span>
+<h3 class="font-headline text-xl font-bold text-primary mb-2">Prachtige natuur</h3>
+<p class="text-on-surface-variant font-body">Rijd door het hart van Salland langs verborgen bospaadjes, heide en schilderachtige Overijsselse landgoederen.</p>
+</div>
+<div class="p-8 bg-surface-container-low rounded-xl group hover:bg-surface-container transition-colors duration-500">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4">extension</span>
+<h3 class="font-headline text-xl font-bold text-primary mb-2">Puzzelplezier</h3>
+<p class="text-on-surface-variant font-body">Bijzonder navigeren met tulip diagrammen en uitdagende fotopuzzels onderweg die je goed laten kijken.</p>
+</div>
+<div class="p-8 bg-primary-container text-white rounded-xl shadow-lg transform md:-translate-y-8">
+<span class="material-symbols-outlined text-4xl text-secondary-container mb-4">payments</span>
+<h3 class="font-headline text-xl font-bold mb-2">Betaalbaar</h3>
+<p class="opacity-90 font-body">Slechts <span class="text-2xl font-bold">&euro;10</span> per auto. Ongeacht het aantal personen — een hele dag avontuur voor de prijs van een bioscoopkaartje.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works (Bento Layout) -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<div>
+<p class="text-secondary font-label font-bold uppercase tracking-widest mb-2">Stap voor Stap</p>
+<h2 class="text-primary font-headline text-4xl md:text-5xl font-bold">Hoe Werkt Het?</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+<!-- Step 1 & 2 -->
+<div class="md:col-span-4 grid grid-rows-2 gap-6">
+<div class="bg-surface p-8 rounded-xl flex flex-col justify-between">
+<span class="text-4xl font-headline font-bold text-secondary-container">01</span>
+<div>
+<h4 class="font-headline text-xl font-bold text-primary">Stuur een bericht</h4>
+<p class="text-on-surface-variant">Stuur ons een WhatsApp bericht of e-mail om de route te bestellen.</p>
+</div>
+</div>
+<div class="bg-surface p-8 rounded-xl flex flex-col justify-between">
+<span class="text-4xl font-headline font-bold text-secondary-container">02</span>
+<div>
+<h4 class="font-headline text-xl font-bold text-primary">Eenvoudig Betalen</h4>
+<p class="text-on-surface-variant">Ontvang een betaalverzoek van &euro;10,- en betaal snel en veilig.</p>
+</div>
+</div>
+</div>
+<!-- Visual Centerpiece -->
+<div class="md:col-span-4 bg-primary rounded-xl overflow-hidden relative group">
+<img alt="Route Map" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" data-alt="detailed vintage topographical map of a countryside area with winding roads and hand-drawn navigation markers in ink" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIh-cvd98tGPoFJxWiUeE66d8EmVeNwRmy4dcM56u4wO2Y6hMF6SnT2A57ualHpIRuHF3xbiGgrvRNV0i--Y9xzfyc3g_Zsh7S5SYm27KTIEWSHVZP_Bf5cUPQImVZfUYz295fcKgmQoyl33KpoSKvwaEWO8m_U4cpz9l0v80SEQtUFG7c3vJtQtlBRmjmWaB5ogICkrGx0ft8CJV72mmGxCSLr9xT45cYCpBial-2HQQktvpruBm_wCduqSifIJm4WOBVXk7IRbej"/>
+<div class="absolute inset-0 flex items-center justify-center p-8">
+<div class="text-center">
+<span class="material-symbols-outlined text-6xl text-on-primary mb-4">map</span>
+<h4 class="text-white font-headline text-2xl font-bold">Ready to Roll?</h4>
+</div>
+</div>
+</div>
+<!-- Step 3 & 4 -->
+<div class="md:col-span-4 grid grid-rows-2 gap-6">
+<div class="bg-surface p-8 rounded-xl flex flex-col justify-between">
+<span class="text-4xl font-headline font-bold text-secondary-container">03</span>
+<div>
+<h4 class="font-headline text-xl font-bold text-primary">Ontvang de PDF</h4>
+<p class="text-on-surface-variant">Na betaling ontvang je de PDF met route, instructies en puzzels, aangepast voor jouw startpunt.</p>
+</div>
+</div>
+<div class="bg-surface p-8 rounded-xl flex flex-col justify-between border-2 border-secondary">
+<span class="text-4xl font-headline font-bold text-secondary">04</span>
+<div>
+<h4 class="font-headline text-xl font-bold text-primary">Start het Avontuur!</h4>
+<p class="text-on-surface-variant">Print de PDF, rijd naar het startpunt en begin jouw unieke tocht door Salland.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Navigation & Puzzles Explained -->
+<section class="py-24 bg-surface overflow-hidden">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<div class="relative">
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+<img alt="Car Detail" class="rounded-xl shadow-2xl relative z-10" data-alt="close-up of a vintage odometer and dashboard of a classic car with warm wooden trim and chrome details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5SxErkrKiyM1DMTcpIGK5zyk_7J5HL3Om6kl5rrPUVqcgypcGlTkJ2IO5YUm4x7uGWvbqJH6PWnPC1iO5qNpVzoCpMIQ8uPw_KfhJDkEz1IgqWPVj2Cdo13iRzcIDmYuTEu4ji1hQGMiuJshGk4p7ME7mzkwSCJ0GwnwgiUSGloct8AUieHAKDuthEGcMVrrxYmbw4L3jXk6WkfGgF4CfFKHz58mzIuII8yzjmpB3jV5puudq4T6liC9s6zpRW2p3IlmtvKqAhS-N"/>
+<div class="absolute -bottom-6 -right-6 bg-surface-container p-6 rounded-xl shadow-xl z-20 max-w-[240px]">
+<p class="font-label text-xs uppercase font-bold text-secondary mb-2">Navigatiemethode</p>
+<h5 class="font-headline text-lg font-bold text-primary">Tulip Diagrammen</h5>
+<p class="text-sm text-on-surface-variant">De klassieke rallynavigatie zonder GPS.</p>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="text-primary font-headline text-4xl font-bold mb-6">Navigeren met Tulip Diagrammen</h2>
+<div class="space-y-8">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-surface-container-highest rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">explore</span>
+</div>
+<div>
+<h4 class="font-headline text-xl font-bold text-primary mb-2">Bolletje-Pijltje Symbolen</h4>
+<p class="text-on-surface-variant">Leer de taal van rallyrijders. Het bolletje is waar je vandaan komt, het pijltje is waar je naartoe gaat. Boven elk diagram zie je de afstand tot het volgende punt.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-surface-container-highest rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">photo_camera</span>
+</div>
+<div>
+<h4 class="font-headline text-xl font-bold text-primary mb-2">Fotopuzzels</h4>
+<p class="text-on-surface-variant">Houd je ogen open! Herken locaties op de weg aan de hand van foto's in de gids. Vind de verborgen letters en los de eindpuzzel op.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ordering Section -->
+<section class="py-24 bg-primary text-on-primary">
+<div class="max-w-4xl mx-auto px-8 text-center">
+<h2 class="font-headline text-4xl md:text-5xl font-bold mb-6">Bestel de Middel of Nowhere Puzzelrit</h2>
+<p class="text-lg opacity-80 mb-12 max-w-2xl mx-auto">Klaar om de verborgen parels van Salland te ontdekken? Kies hieronder hoe je wilt bestellen en wij sturen je de details direct toe.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<a class="flex items-center justify-center gap-4 bg-[#25D366] text-white py-6 rounded-xl font-label font-bold text-xl hover:scale-[1.05] transition-transform duration-300 shadow-lg group" href="https://wa.me/31614174474?text=Hoi!%20Ik%20wil%20graag%20meedoen%20aan%20de%20Middel%20of%20Nowhere%20puzzelrit!">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-12 transition-transform">chat</span>
+                        Bestel via WhatsApp
+                    </a>
+<a class="flex items-center justify-center gap-4 bg-secondary text-on-primary py-6 rounded-xl font-label font-bold text-xl hover:scale-[1.05] transition-transform duration-300 shadow-lg group" href="mailto:middelinbeweging@gmail.com?subject=Bestelling%20Middel%20of%20Nowhere%20puzzelrit&body=Hoi!%20Ik%20wil%20graag%20meedoen%20aan%20de%20Middel%20of%20Nowhere%20puzzelrit!">
+<span class="material-symbols-outlined text-3xl group-hover:-translate-y-1 transition-transform">mail</span>
+                        Bestel via E-mail
+                    </a>
+</div>
+<p class="mt-8 font-label text-sm opacity-60">Direct beschikbaar na betaling &bull; PDF formaat &bull; Geschikt voor mobiel</p>
+</div>
+</section>
+<!-- Map Section (Asymmetric) -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col lg:flex-row gap-12 items-center">
+<div class="w-full lg:w-1/3">
+<h3 class="font-headline text-3xl font-bold text-primary mb-4">Startlocatie</h3>
+<p class="text-on-surface-variant mb-6">De route kent meerdere startpunten, zodat je altijd dichtbij kunt beginnen. Na bestelling ontvang je de PDF aangepast voor jouw gewenste startpunt.</p>
+<div class="flex items-center gap-3 text-secondary font-bold">
+<span class="material-symbols-outlined">near_me</span>
+<span>Raalte / Olst / Deventer / Heeten</span>
+</div>
+</div>
+<div class="w-full lg:w-2/3 h-[400px] bg-surface-container rounded-2xl overflow-hidden shadow-inner relative">
+<div class="absolute inset-0 bg-black/5 pointer-events-none"></div>
+<img alt="Region Map" class="w-full h-full object-cover" data-alt="stylized map view showing the Salland ridge area with green parks, winding rivers, and small rural villages" data-location="Salland, Netherlands" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDBy_xgXxnrhAtzwOpHlJ_DUSGgpdAV9JAE7LUAF0fK72aJGt3VyT6Q3NcjVpj3JS4rrMm7VVvIF1fWMDCCis1WtnqLOegrkKvlll02V_46GRFLDJN3N5wRfTKkkLVpHWsNdQg3F4kjS0YNHpVABq53Ig4DRWkMPUnLPQc7-OF4_cqxDKL8mM0jpstWBhzSkclYXJ_INm4YUtqwohzDpDWKqDsxGK7IW1RAZbEc_xt5qdd2HccBfUZA9Rt8jdaUlasboBCuUuXx32a"/>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#2D5016] dark:bg-[#001A0A] text-[#FEF9EC]">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-7xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-xl font-bold text-[#FEF9EC] font-headline mb-2">Middel of Nowhere</div>
+<p class="text-[#FEF9EC]/80 font-body text-sm">&copy; 2026 Middel of Nowhere - Salland Auto Puzzelrit.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 font-label text-sm uppercase tracking-wider font-bold">
+<a class="text-[#FEF9EC]/80 hover:text-[#8D4F00] transition-all" href="https://www.instagram.com/middel.of.nowhere.puzzelrit">Instagram</a>
+<a class="text-[#FEF9EC]/80 hover:text-[#8D4F00] transition-all" href="https://www.facebook.com/profile.php?id=61586008074445">Facebook</a>
+<a class="text-[#FEF9EC]/80 hover:text-[#8D4F00] transition-all" href="https://wa.me/31614174474">WhatsApp</a>
+</div>
+<div class="flex gap-6 mt-8 md:mt-0 font-label text-xs">
+<a class="text-[#FEF9EC]/80 hover:text-[#8D4F00] transition-all" href="#">Privacybeleid</a>
+<a class="text-[#FEF9EC]/80 hover:text-[#8D4F00] transition-all" href="#">Algemene Voorwaarden</a>
+</div>
+</div>
+</footer>
+</body></html>
