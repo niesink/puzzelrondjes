@@ -1,0 +1,814 @@
+---
+permalink: /nowhere/
+layout: null
+---
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Middel of Nowhere • Antwoordcontrole</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Page-specific favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/nowhere/apple-touch-icon.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/nowhere/favicon-32x32.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/nowhere/favicon-16x16.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/images/nowhere/android-chrome-192x192.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ '/assets/images/nowhere/android-chrome-512x512.png' | relative_url }}">
+    <link rel="shortcut icon" href="{{ '/assets/images/nowhere/favicon.ico' | relative_url }}">
+    <link rel="manifest" href="{{ '/assets/images/nowhere/site.webmanifest' | relative_url }}">
+    <meta name="theme-color" content="#06070d">
+    <style>
+        :root {
+            --bg-dark: #06070d;
+            --bg-accent: radial-gradient(circle at 20% 20%, #10253f, transparent 45%),
+                          radial-gradient(circle at 80% 0%, #2d0b17, transparent 50%),
+                          radial-gradient(circle at 60% 80%, #0f2b1e, transparent 55%);
+            --card: rgba(6, 7, 13, 0.9);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f6f3ee;
+            --text-muted: rgba(246, 243, 238, 0.7);
+            --accent: #f0c34a;
+            --accent-strong: #ff8b3d;
+            --error: #ff5f6d;
+            --success: #7ee787;
+            font-family: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1.5rem;
+            background-image: var(--bg-accent);
+            background-attachment: fixed;
+        }
+
+        main {
+            width: 100%;
+            max-width: 720px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: floatIn 650ms ease-out;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0 0 0.4rem;
+            letter-spacing: 0.02em;
+        }
+
+        p.lead {
+            margin: 0 0 2rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1 1 220px;
+            padding: 0.85rem 1.1rem;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: border-color 180ms ease, transform 180ms ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        button {
+            flex: 0 0 auto;
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            color: #1c1408;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            cursor: pointer;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        button:focus-visible {
+            outline: 3px solid rgba(240, 195, 74, 0.4);
+            outline-offset: 4px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(240, 195, 74, 0.35);
+        }
+
+        .hint {
+            margin-top: 0.9rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            min-height: 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .result.success {
+            color: var(--success);
+        }
+
+        .result.error {
+            color: var(--error);
+        }
+
+        .reward {
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 320ms ease, transform 320ms ease;
+        }
+
+        .reward.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reward-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin: 1.5rem 0 1.25rem;
+        }
+
+        .mode-btn {
+            padding: 0.85rem 1rem;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .mode-btn.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(240, 195, 74, 0.1);
+        }
+
+        .reward-panel {
+            margin-bottom: 1rem;
+        }
+
+        .file-input {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            border-radius: 14px;
+            border: 1px dashed var(--card-border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .file-input::file-selector-button {
+            margin-right: 1rem;
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            color: #1c1408;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            cursor: pointer;
+        }
+
+        .reward-preview {
+            margin-top: 1rem;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .reward-preview canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .camera-view {
+            position: relative;
+            border: 1px dashed var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            min-height: 260px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .camera-view video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #020305;
+        }
+
+        .camera-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .camera-actions button {
+            flex: 1 1 180px;
+        }
+
+        .reward-status {
+            margin-top: 0.6rem;
+            min-height: 1.4rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .reward-actions {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        #download-btn {
+            width: 100%;
+        }
+
+        #download-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        @keyframes floatIn {
+            from {
+                transform: translateY(16px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.65rem;
+            }
+
+            .input-row {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="card" aria-live="polite">
+            <h1>Middel of Nowhere</h1>
+            <p class="lead">Voer het gevonden eindantwoord in om te checken of je de puzzel correct hebt opgelost. </p>
+
+            <form id="answer-form" autocomplete="off">
+                <label for="answer-input">Antwoord invoeren</label>
+                <div class="input-row">
+                    <input id="answer-input" name="answer" type="text" placeholder="Bijv. 123" required>
+                    <button type="submit">Controleer</button>
+                </div>
+                <p class="hint">Tip: cijfers en letters zijn niet hoofdlettergevoelig.</p>
+            </form>
+
+            <div id="result" class="result" role="status" aria-live="polite"></div>
+        </section>
+
+        <section id="reward" class="card reward" hidden aria-live="polite">
+            <h2>Jouw digitale trofee</h2>
+            <p class="result">Gefeliciteerd! Maak live een selfie of upload een favoriete foto en maak je eigen trofee! </p>
+            <p class="lead"><i>PS: het maken van de foto en trofee gebeurt allemaal lokaal, er wordt niets door onze server opgeslagen</i></p>
+
+            <div class="reward-modes" role="tablist" aria-label="Fotobron kiezen">
+                <button type="button" class="mode-btn active" data-mode="camera" aria-selected="true">Live foto maken</button>
+                <button type="button" class="mode-btn" data-mode="upload" aria-selected="false">Afbeelding uploaden</button>
+            </div>
+
+            <div id="upload-panel" class="reward-panel" hidden>
+                <label for="photo-input">Zelf een foto kiezen</label>
+                <input id="photo-input" class="file-input" type="file" accept="image/*">
+            </div>
+
+            <div id="camera-panel" class="reward-panel">
+                <p class="hint" id="camera-note">Start de camera wanneer je klaar bent voor een verse overwinning-selfie.</p>
+                <div id="camera-view" class="camera-view" hidden>
+                    <video id="camera-preview" playsinline muted></video>
+                </div>
+                <div class="camera-actions">
+                    <button id="start-camera-btn" type="button">Start camera</button>
+                    <button id="capture-btn" type="button" disabled hidden>Neem foto</button>
+                </div>
+            </div>
+
+            <p id="reward-status" class="reward-status">Deze functie wordt zichtbaar zodra je het juiste antwoord hebt gevonden.</p>
+
+            <div class="reward-preview">
+                <canvas id="reward-canvas" width="1024" height="1024" hidden aria-hidden="true"></canvas>
+            </div>
+
+            <div class="reward-actions">
+                <button id="download-btn" type="button" disabled>Download jouw trofee</button>
+                <button id="reopen-camera-btn" type="button" hidden>Maak nog een live foto</button>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        const storedHash = 'd4ee9f58e5860574ca98e3b4839391e7a356328d4bd6afecefc2381df5f5b41b'; // SHA-256 hash of the correct solution
+
+        const hexFromBuffer = (buffer) => {
+            const byteArray = new Uint8Array(buffer);
+            return Array.from(byteArray)
+                .map((byte) => byte.toString(16).padStart(2, '0'))
+                .join('');
+        };
+
+        async function hashText(text) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(text);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            return hexFromBuffer(hashBuffer);
+        }
+
+        const form = document.getElementById('answer-form');
+        const input = document.getElementById('answer-input');
+        const resultBox = document.getElementById('result');
+        const rewardSection = document.getElementById('reward');
+        const photoInput = document.getElementById('photo-input');
+        const modeButtons = document.querySelectorAll('[data-mode]');
+        const cameraModeButton = document.querySelector('[data-mode="camera"]');
+        const uploadPanel = document.getElementById('upload-panel');
+        const cameraPanel = document.getElementById('camera-panel');
+        const cameraView = document.getElementById('camera-view');
+        const cameraPreview = document.getElementById('camera-preview');
+        const cameraNote = document.getElementById('camera-note');
+        const startCameraBtn = document.getElementById('start-camera-btn');
+        const captureBtn = document.getElementById('capture-btn');
+        const reopenCameraBtn = document.getElementById('reopen-camera-btn');
+        const rewardStatus = document.getElementById('reward-status');
+        const rewardCanvas = document.getElementById('reward-canvas');
+        const downloadBtn = document.getElementById('download-btn');
+        const canvasContext = rewardCanvas.getContext('2d');
+
+        let rewardUnlocked = false;
+        let userImage = null;
+        let frameReady = false;
+        let currentMode = 'camera';
+        let mediaStream = null;
+        let cameraPanelCollapsed = false;
+        let hasCameraAccess = false;
+        let isStartingCamera = false;
+
+        const frameImage = new Image();
+        frameImage.onload = () => {
+            frameReady = true;
+            if (userImage) {
+                renderComposite();
+            }
+        };
+        frameImage.src = '../nowhere_frame_small.png';
+
+        const cameraSupported = Boolean(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+        if (!cameraSupported) {
+            cameraNote.textContent = 'Deze browser ondersteunt geen camera-opnames. Kies een bestaande afbeelding.';
+            startCameraBtn.hidden = true;
+            captureBtn.disabled = true;
+            cameraView.hidden = true;
+            captureBtn.hidden = true;
+            setMode('upload');
+            if (cameraModeButton) {
+                cameraModeButton.disabled = true;
+                cameraModeButton.setAttribute('aria-disabled', 'true');
+            }
+        } else {
+            captureBtn.disabled = true;
+            captureBtn.hidden = true;
+            cameraView.hidden = true;
+            startCameraBtn.hidden = false;
+            setMode(currentMode);
+        }
+
+        resetCameraControls();
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const normalized = input.value.trim().toLowerCase();
+
+            if (!normalized) {
+                resultBox.textContent = 'Voer eerst een antwoord in.';
+                resultBox.className = 'result error';
+                return;
+            }
+
+            const currentHash = await hashText(normalized);
+            const match = currentHash === storedHash;
+
+            resultBox.textContent = match ? 'Yes! Dit antwoord klopt precies.' : 'Helaas, dit antwoord is niet juist.';
+            resultBox.className = `result ${match ? 'success' : 'error'}`;
+
+            if (match) {
+                input.value = '';
+                unlockReward();
+            }
+
+            const webhookUrl = "https://hooks.nabu.casa/gAAAAABpcQUsRzQlkm6BE6FKcoBAQp2hbT5RhbP35GiDyWFFvaVE-2ZoCxkZqXSKTW04PY7OS28qcNAaOLNdcjHf3w_gqnHNzL9Qis1IxyycgRrovs19AtWibl_aZd8PKqSRZzc2QPQVKscRaRFPYe9Vmo9pN_sNcTD5TbDZpFypsaqcPiUHPzA=";
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    oplossing: normalized
+                })
+            });
+        });
+
+        input.addEventListener('focus', () => {
+            resultBox.textContent = '';
+            resultBox.className = 'result';
+        });
+
+        modeButtons.forEach((button) => {
+            button.addEventListener('click', () => switchMode(button.dataset.mode));
+        });
+
+        photoInput.addEventListener('change', handleFileSelection);
+
+        startCameraBtn.addEventListener('click', () => {
+            if (!cameraSupported) {
+                rewardStatus.textContent = 'Camera wordt niet ondersteund in deze browser.';
+                return;
+            }
+            startCamera();
+        });
+
+        captureBtn.addEventListener('click', capturePhoto);
+        reopenCameraBtn.addEventListener('click', () => {
+            cameraPanelCollapsed = false;
+            cameraPanel.hidden = false;
+            reopenCameraBtn.hidden = true;
+            rewardStatus.textContent = 'Camera wordt gestart...';
+            if (currentMode !== 'camera') {
+                switchMode('camera', { forceCameraStart: true });
+            } else {
+                maybeAutoStartCamera(true);
+            }
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (downloadBtn.disabled) {
+                return;
+            }
+
+            const link = document.createElement('a');
+            link.href = rewardCanvas.toDataURL('image/png');
+            link.download = 'middel-of-nowhere-trofee.png';
+            link.click();
+        });
+
+        function unlockReward() {
+            rewardSection.hidden = false;
+            rewardSection.classList.add('active');
+            rewardStatus.textContent = currentMode === 'camera'
+                ? ''
+                : 'Upload een foto voor jouw trofee.';
+
+            if (!rewardUnlocked) {
+                rewardUnlocked = true;
+            }
+
+            rewardSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            modeButtons.forEach((btn) => {
+                const isActive = btn.dataset.mode === mode;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            const showCamera = mode === 'camera' && !cameraPanelCollapsed;
+            uploadPanel.hidden = mode !== 'upload';
+            cameraPanel.hidden = !showCamera;
+
+            if (mode === 'upload') {
+                rewardStatus.textContent = 'Upload een foto voor jouw trofee.';
+                stopCameraStream();
+            } else if (cameraSupported) {
+                rewardStatus.textContent = rewardUnlocked
+                    ? ''
+                    : 'Start de camera wanneer je klaar bent.';
+            }
+        }
+
+        function switchMode(mode, { forceCameraStart = false } = {}) {
+            if (mode === 'camera' && !cameraSupported) {
+                rewardStatus.textContent = 'Camera wordt niet ondersteund in deze browser.';
+                return;
+            }
+
+            const previousMode = currentMode;
+
+            if (mode === 'camera' && previousMode !== 'camera') {
+                cameraPanelCollapsed = false;
+                reopenCameraBtn.hidden = true;
+            }
+
+            setMode(mode);
+
+            if (mode === 'camera' && !cameraPanelCollapsed) {
+                if (forceCameraStart || hasCameraAccess) {
+                    maybeAutoStartCamera(forceCameraStart || hasCameraAccess);
+                } else {
+                    resetCameraControls();
+                }
+            } else {
+                resetCameraControls();
+            }
+        }
+
+        function handleFileSelection(event) {
+            const [file] = event.target.files;
+
+            if (!file) {
+                rewardStatus.textContent = 'Geen bestand geselecteerd.';
+                return;
+            }
+
+            if (!file.type.startsWith('image/')) {
+                rewardStatus.textContent = 'Dit bestand is geen afbeelding. Kies een ander bestand.';
+                event.target.value = '';
+                downloadBtn.disabled = true;
+                rewardCanvas.hidden = true;
+                return;
+            }
+
+            rewardStatus.textContent = 'Bezig met verwerken...';
+            downloadBtn.disabled = true;
+            rewardCanvas.hidden = true;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                const img = new Image();
+                img.onload = () => {
+                    userImage = img;
+                    renderComposite();
+                };
+                img.onerror = () => {
+                    rewardStatus.textContent = 'De afbeelding kon niet worden geladen. Probeer opnieuw.';
+                };
+                img.src = reader.result;
+            };
+            reader.onerror = () => {
+                rewardStatus.textContent = 'Er ging iets mis bij het uitlezen van dit bestand.';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function startCamera(auto = false) {
+            if (!cameraSupported || isStartingCamera || mediaStream) {
+                return;
+            }
+
+            isStartingCamera = true;
+            startCameraBtn.hidden = true;
+            startCameraBtn.disabled = true;
+            rewardStatus.textContent = 'Camera wordt gestart...';
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: 'user',
+                        width: { ideal: 1280 },
+                        height: { ideal: 1280 }
+                    }
+                });
+                mediaStream = stream;
+                cameraPreview.srcObject = stream;
+                await cameraPreview.play();
+                hasCameraAccess = true;
+                cameraPanelCollapsed = false;
+                cameraPanel.hidden = false;
+                cameraView.hidden = false;
+                captureBtn.hidden = false;
+                captureBtn.disabled = false;
+                reopenCameraBtn.hidden = true;
+                rewardStatus.textContent = 'Camera actief. Druk op "Neem foto" om verder te gaan.';
+            } catch (error) {
+                rewardStatus.textContent = auto
+                    ? 'Automatisch starten van de camera is niet gelukt. Gebruik eventueel de knop "Start camera".'
+                    : 'Camera kon niet worden gestart. Controleer permissies en probeer opnieuw.';
+                startCameraBtn.hidden = false;
+            } finally {
+                startCameraBtn.disabled = false;
+                isStartingCamera = false;
+                resetCameraControls();
+            }
+        }
+
+        function capturePhoto() {
+            if (!mediaStream) {
+                rewardStatus.textContent = 'Start eerst de camera.';
+                return;
+            }
+
+            const captureCanvas = document.createElement('canvas');
+            const width = cameraPreview.videoWidth || 1024;
+            const height = cameraPreview.videoHeight || 1024;
+            captureCanvas.width = width;
+            captureCanvas.height = height;
+
+            const ctx = captureCanvas.getContext('2d');
+            ctx.drawImage(cameraPreview, 0, 0, width, height);
+
+            const image = new Image();
+            image.onload = () => {
+                userImage = image;
+                renderComposite();
+                rewardStatus.textContent = 'Foto vastgelegd! Download je trofee of maak eventueel nog een foto.';
+                cameraPanelCollapsed = true;
+                cameraPanel.hidden = true;
+                cameraView.hidden = true;
+                captureBtn.hidden = true;
+                captureBtn.disabled = true;
+                reopenCameraBtn.hidden = false;
+                stopCameraStream();
+            };
+            image.onerror = () => {
+                rewardStatus.textContent = 'Het vastleggen van de foto is mislukt. Probeer opnieuw.';
+            };
+            image.src = captureCanvas.toDataURL('image/png');
+        }
+
+        function stopCameraStream() {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach((track) => track.stop());
+                mediaStream = null;
+            }
+            cameraPreview.srcObject = null;
+            resetCameraControls();
+        }
+
+        function resetCameraControls() {
+            if (!cameraSupported) {
+                return;
+            }
+
+            const cameraVisible = currentMode === 'camera' && !cameraPanelCollapsed;
+            cameraPanel.hidden = !cameraVisible;
+
+            if (!cameraVisible) {
+                startCameraBtn.hidden = true;
+                startCameraBtn.disabled = false;
+                cameraView.hidden = true;
+                captureBtn.hidden = true;
+                captureBtn.disabled = true;
+                return;
+            }
+
+            const active = Boolean(mediaStream);
+
+            if (active) {
+                startCameraBtn.hidden = true;
+                startCameraBtn.disabled = false;
+                cameraView.hidden = false;
+                captureBtn.hidden = false;
+                captureBtn.disabled = false;
+                return;
+            }
+
+            if (isStartingCamera) {
+                startCameraBtn.hidden = true;
+                startCameraBtn.disabled = true;
+                cameraView.hidden = true;
+                captureBtn.hidden = true;
+                captureBtn.disabled = true;
+                return;
+            }
+
+            startCameraBtn.hidden = false;
+            startCameraBtn.disabled = false;
+            cameraView.hidden = true;
+            captureBtn.hidden = true;
+            captureBtn.disabled = true;
+        }
+
+        function maybeAutoStartCamera(force = false) {
+            if (!cameraSupported || cameraPanelCollapsed) {
+                resetCameraControls();
+                return;
+            }
+
+            if (mediaStream || isStartingCamera) {
+                return;
+            }
+
+            if (force || hasCameraAccess) {
+                startCamera(true);
+            } else {
+                resetCameraControls();
+            }
+        }
+
+        function renderComposite() {
+            if (!userImage || !frameReady) {
+                return;
+            }
+
+            const width = frameImage.naturalWidth || 1024;
+            const height = frameImage.naturalHeight || 1024;
+            rewardCanvas.width = width;
+            rewardCanvas.height = height;
+
+            const padding = width * 0.12;
+            const availableWidth = width - padding * 2;
+            const availableHeight = height - padding * 2;
+            const userRatio = userImage.width / userImage.height;
+            const targetRatio = availableWidth / availableHeight;
+
+            let drawWidth;
+            let drawHeight;
+
+            if (userRatio > targetRatio) {
+                drawWidth = availableWidth;
+                drawHeight = drawWidth / userRatio;
+            } else {
+                drawHeight = availableHeight;
+                drawWidth = drawHeight * userRatio;
+            }
+
+            const dx = (width - drawWidth) / 2;
+            const dy = (height - drawHeight) / 2;
+
+            canvasContext.fillStyle = '#05060a';
+            canvasContext.fillRect(0, 0, width, height);
+            canvasContext.drawImage(userImage, dx, dy, drawWidth, drawHeight);
+            canvasContext.drawImage(frameImage, 0, 0, width, height);
+
+            rewardCanvas.hidden = false;
+            downloadBtn.disabled = false;
+            rewardStatus.textContent = 'Klaar! Download jouw trofee hieronder.';
+        }
+
+        window.addEventListener('beforeunload', stopCameraStream);
+    </script>
+</body>
+</html>
