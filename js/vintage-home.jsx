@@ -9,18 +9,29 @@ function RouteCard({ route, compact }) {
       background: VIN.cream, border: `2px solid ${VIN.ink}`,
       boxShadow: `8px 8px 0 ${route.accent}33`,
       position: 'relative', overflow: 'hidden',
-      opacity: isAvailable ? 1 : 0.95,
       height: '100%',
     }}>
       {!isAvailable && (
-        <div style={{ position: 'absolute', top: 16, right: -40, transform: 'rotate(25deg)', background: route.accent, color: VIN.cream, padding: '4px 50px', fontFamily: 'Special Elite, monospace', fontSize: 11, letterSpacing: '0.2em', zIndex: 2 }}>
-          binnenkort
-        </div>
+        <>
+          <div style={{
+            position: 'absolute', top: 22, right: -52, transform: 'rotate(25deg)',
+            background: route.color, color: VIN.cream,
+            padding: '10px 70px',
+            fontFamily: 'Special Elite, monospace', fontSize: 15, letterSpacing: '0.25em',
+            zIndex: 2, boxShadow: `0 2px 8px rgba(0,0,0,0.35)`,
+          }}>
+            binnenkort
+          </div>
+          <div style={{
+            position: 'absolute', inset: 0, background: `${VIN.ink}18`,
+            zIndex: 1, pointerEvents: 'none',
+          }}/>
+        </>
       )}
       <div style={{ padding: 10, background: route.color }}>
         <AnimatedHero palette={heroPalette} compact={compact}/>
       </div>
-      <div style={{ padding: compact ? '18px 18px 20px' : '22px 24px 26px' }}>
+      <div style={{ padding: compact ? '18px 18px 20px' : '22px 24px 26px', position: 'relative', zIndex: 2 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
           <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.2em', color: route.accent, textTransform: 'uppercase' }}>
             Rit {route.number} · {route.region}
@@ -51,10 +62,7 @@ function RouteCard({ route, compact }) {
       </div>
     </div>
   );
-  if (isAvailable) {
-    return <a href={urlFor(route.id)} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>{inner}</a>;
-  }
-  return inner;
+  return <a href={urlFor(route.id)} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>{inner}</a>;
 }
 
 function HomePage() {
@@ -95,7 +103,7 @@ function HomePage() {
           <div style={{ border: `2px solid ${VIN.ink}`, padding: 6, background: VIN.cream, boxShadow: `10px 10px 0 ${VIN.default}22` }}>
             <AnimatedHero palette={heroPaletteForRoute(ROUTES[0])}/>
             <div style={{ textAlign: 'center', fontFamily: 'Special Elite, monospace', fontSize: 11, letterSpacing: '0.15em', padding: '8px 0 4px', opacity: 0.75 }}>
-              ─ {ROUTES.length} RITTEN · EN TELLEN ─
+              ─ AL {ROUTES.length} ROUTES · EN SNEL MEER ─
             </div>
           </div>
           <div style={{ position: 'absolute', top: -18, right: -18 }}>

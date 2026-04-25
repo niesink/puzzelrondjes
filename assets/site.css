@@ -6,7 +6,7 @@ img { max-width: 100%; }
 
 /* Nav responsive switch */
 .pr-nav-desktop { display: flex; }
-.pr-nav-mobile { display: none; }
+.pr-nav-mobile { display: none !important; }
 @media (max-width: 820px) {
   .pr-nav-desktop { display: none !important; }
   .pr-nav-mobile { display: flex !important; }

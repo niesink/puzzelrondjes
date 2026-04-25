@@ -8,7 +8,7 @@ Statische website voor auto-puzzelritten — door Anne & Luke, Buurtschap Middel
 site/
 ├── index.html                           # Home / overzicht alle ritten
 ├── middel-of-nowhere/index.html         # Rit 01 — Salland
-├── genieten-van-gelderijssel/index.html # Rit 02 — Gelderijssel (binnenkort)
+├── oude-schipbeekvallei/index.html      # Rit 02 — Salland (binnenkort)
 ├── 404.html                             # Not-found pagina
 ├── CNAME                                # Custom domein (puzzelrondjes.nl)
 ├── robots.txt
