@@ -43,7 +43,7 @@ function RoutePage({ route }) {
         </div>
         <div style={{ position: 'relative' }}>
           <div style={{ border: `2px solid ${VIN.ink}`, padding: 6, background: VIN.cream, boxShadow: `10px 10px 0 ${r.color}33` }}>
-            <AnimatedHero palette={heroPaletteForRoute(r)}/>
+            <RouteHero route={r}/>
             <div style={{ textAlign: 'center', fontFamily: 'Special Elite, monospace', fontSize: 11, letterSpacing: '0.15em', padding: '8px 0 4px', opacity: 0.75 }}>
               ─ {r.region.toUpperCase()} ─
             </div>

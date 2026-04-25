@@ -3,7 +3,6 @@
 
 function RouteCard({ route, compact }) {
   const isAvailable = route.status === 'available';
-  const heroPalette = heroPaletteForRoute(route);
   const inner = (
     <div style={{
       background: VIN.cream, border: `2px solid ${VIN.ink}`,
@@ -29,7 +28,7 @@ function RouteCard({ route, compact }) {
         </>
       )}
       <div style={{ padding: 10, background: route.color }}>
-        <AnimatedHero palette={heroPalette} compact={compact}/>
+        <RouteHero route={route} compact={compact}/>
       </div>
       <div style={{ padding: compact ? '18px 18px 20px' : '22px 24px 26px', position: 'relative', zIndex: 2 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
@@ -90,7 +89,7 @@ function HomePage() {
               textDecoration: 'none', border: `2px solid ${VIN.default}`,
               display: 'inline-flex', alignItems: 'center', gap: 10,
             }}>
-              Bekijk de ritten <span>↓</span>
+              Bekijk de rondjes <span>↓</span>
             </a>
             <a href={BRAND.wa} style={{
               color: VIN.ink, padding: '14px 20px',
@@ -103,7 +102,7 @@ function HomePage() {
           <div style={{ border: `2px solid ${VIN.ink}`, padding: 6, background: VIN.cream, boxShadow: `10px 10px 0 ${VIN.default}22` }}>
             <AnimatedHero palette={heroPaletteForRoute(ROUTES[0])}/>
             <div style={{ textAlign: 'center', fontFamily: 'Special Elite, monospace', fontSize: 11, letterSpacing: '0.15em', padding: '8px 0 4px', opacity: 0.75 }}>
-              ─ AL {ROUTES.length} ROUTES · EN SNEL MEER ─
+              ─ AL {ROUTES.length} RONDJES · EN SNEL MEER ─
             </div>
           </div>
           <div style={{ position: 'absolute', top: -18, right: -18 }}>
@@ -134,7 +133,7 @@ function HomePage() {
       <div id="ritten" style={{ padding: '72px 48px', maxWidth: 1400, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 36, flexWrap: 'wrap', gap: 20 }}>
           <div>
-            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.3em', color: VIN.defaultAccent, marginBottom: 14, textTransform: 'uppercase' }}>─ Onze ritten ─</div>
+            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.3em', color: VIN.defaultAccent, marginBottom: 14, textTransform: 'uppercase' }}>─ Onze rondjes ─</div>
             <h2 className="pr-h2" style={{ fontFamily: 'Fraunces, serif', fontSize: 64, lineHeight: 0.98, margin: 0, fontWeight: 800, letterSpacing: '-0.02em' }}>
               Kies je <span style={{ fontStyle: 'italic', color: VIN.default }}>avontuur.</span>
             </h2>

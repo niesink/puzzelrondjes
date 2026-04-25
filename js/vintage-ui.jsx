@@ -69,7 +69,7 @@ function TopNav({ currentRoute }) {
           </div>
         </a>
         <div style={{ display: 'flex', gap: 22, alignItems: 'center', fontFamily: 'Fraunces, serif', fontSize: 14 }}>
-          <a href={urlFor('home')} style={{ color: VIN.ink, opacity: currentRoute === 'home' ? 1 : 0.75, textDecoration: 'none', fontWeight: currentRoute === 'home' ? 600 : 400 }}>Alle ritten</a>
+          <a href={urlFor('home')} style={{ color: VIN.ink, opacity: currentRoute === 'home' ? 1 : 0.75, textDecoration: 'none', fontWeight: currentRoute === 'home' ? 600 : 400 }}>Alle rondjes</a>
           {ROUTES.map(r => (
             <a key={r.id} href={urlFor(r.id)}
               style={{
@@ -97,7 +97,7 @@ function TopNav({ currentRoute }) {
         </button>
         {menuOpen && (
           <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: VIN.cream, borderBottom: `1px dashed ${VIN.ink}44`, padding: '8px 18px 14px', zIndex: 20, boxShadow: '0 10px 20px rgba(0,0,0,.08)' }}>
-            <a href={urlFor('home')} style={{ display: 'block', padding: '10px 0', fontFamily: 'Fraunces, serif', fontSize: 15, color: VIN.ink, textDecoration: 'none', borderBottom: `1px dashed ${VIN.ink}22`, fontWeight: currentRoute === 'home' ? 700 : 400 }}>Alle ritten</a>
+            <a href={urlFor('home')} style={{ display: 'block', padding: '10px 0', fontFamily: 'Fraunces, serif', fontSize: 15, color: VIN.ink, textDecoration: 'none', borderBottom: `1px dashed ${VIN.ink}22`, fontWeight: currentRoute === 'home' ? 700 : 400 }}>Alle rondjes</a>
             {ROUTES.map(r => (
               <a key={r.id} href={urlFor(r.id)} style={{ display: 'block', padding: '10px 0', fontFamily: 'Fraunces, serif', fontSize: 15, color: VIN.ink, textDecoration: 'none', borderBottom: `1px dashed ${VIN.ink}22`, fontStyle: currentRoute === r.id ? 'italic' : 'normal', fontWeight: currentRoute === r.id ? 700 : 400 }}>
                 {r.name}

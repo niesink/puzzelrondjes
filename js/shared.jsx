@@ -111,6 +111,205 @@ function heroPaletteForRoute(r) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
+// AnimatedHeroValley — alternate scene: Sallandse Heuvelrug op de achtergrond,
+// een meanderende beek door de vallei, boerderij, knotwilgen, koe in de wei,
+// en een autootje op een onderdoorlopende weg.
+// ═══════════════════════════════════════════════════════════════════
+function AnimatedHeroValley({ palette, style, compact }) {
+  const p = palette;
+  const h = compact ? 260 : 420;
+  return (
+    <div style={{ position: 'relative', width: '100%', height: h, overflow: 'hidden', borderRadius: 2, ...style }}>
+      <svg viewBox="0 0 800 420" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%', display: 'block' }}>
+        <defs>
+          <linearGradient id={"vSky"+p.id} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={p.skyTop}/>
+            <stop offset="100%" stopColor={p.sky}/>
+          </linearGradient>
+          <linearGradient id={"vWater"+p.id} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={p.car} stopOpacity="0.9"/>
+            <stop offset="100%" stopColor={p.car} stopOpacity="0.55"/>
+          </linearGradient>
+          <pattern id={"vDots"+p.id} width="12" height="12" patternUnits="userSpaceOnUse">
+            <circle cx="6" cy="6" r="0.8" fill={p.ink} opacity="0.08"/>
+          </pattern>
+        </defs>
+
+        {/* Sky */}
+        <rect width="800" height="320" fill={`url(#vSky${p.id})`}/>
+
+        {/* Sun */}
+        <circle cx="640" cy="85" r="34" fill={p.accent} opacity="0.78"/>
+        <circle cx="640" cy="85" r="56" fill={p.accent} opacity="0.1"/>
+
+        {/* Clouds */}
+        <g opacity="0.7">
+          <g>
+            <ellipse cx="180" cy="55" rx="48" ry="11" fill="#fff" opacity="0.75"/>
+            <ellipse cx="218" cy="48" rx="32" ry="9" fill="#fff" opacity="0.75"/>
+            <animateTransform attributeName="transform" type="translate" from="0 0" to="900 0" dur="70s" repeatCount="indefinite"/>
+          </g>
+          <g>
+            <ellipse cx="-160" cy="105" rx="55" ry="11" fill="#fff" opacity="0.5"/>
+            <animateTransform attributeName="transform" type="translate" from="0 0" to="1100 0" dur="90s" repeatCount="indefinite"/>
+          </g>
+        </g>
+
+        {/* Birds */}
+        <g fill="none" stroke={p.ink} strokeWidth="1.5" strokeLinecap="round" opacity="0.55">
+          <g>
+            <path d="M0 0 q4 -4 8 0 q4 -4 8 0"/>
+            <animateTransform attributeName="transform" type="translate" from="80 70" to="730 60" dur="28s" repeatCount="indefinite"/>
+          </g>
+          <g>
+            <path d="M0 0 q3 -3 6 0 q3 -3 6 0"/>
+            <animateTransform attributeName="transform" type="translate" from="200 100" to="740 95" dur="32s" repeatCount="indefinite"/>
+          </g>
+        </g>
+
+        {/* Sallandse Heuvelrug — achterste laag, gevarieerde topografie */}
+        <path d="M 0 230 L 50 215 L 100 200 L 160 180 L 230 165 L 310 152 L 380 148 L 450 158 L 520 168 L 590 175 L 670 188 L 740 200 L 800 215 L 800 290 L 0 290 Z" fill={p.hillBack}/>
+        {/* Donkerdere achtergrond achter heuvelrug */}
+        <path d="M 0 250 Q 200 230 380 240 Q 560 250 800 245 L 800 290 L 0 290 Z" fill={p.hillBack} opacity="0.55"/>
+
+        {/* Pijnbomen op de heuvelrug */}
+        <g>
+          {[
+            { x: 60, y: 218, h: 16 }, { x: 110, y: 202, h: 20 },
+            { x: 170, y: 184, h: 24 }, { x: 230, y: 168, h: 28 },
+            { x: 290, y: 158, h: 26 }, { x: 360, y: 152, h: 30 },
+            { x: 420, y: 154, h: 28 }, { x: 480, y: 162, h: 24 },
+            { x: 540, y: 172, h: 22 }, { x: 610, y: 180, h: 20 },
+            { x: 670, y: 192, h: 22 }, { x: 730, y: 204, h: 18 },
+          ].map((t, i) => (
+            <g key={i} transform={`translate(${t.x} ${t.y})`}>
+              <polygon points={`0,${-t.h} ${-t.h*0.4},${-t.h*0.3} ${t.h*0.4},${-t.h*0.3}`} fill={p.tree}/>
+              <polygon points={`0,${-t.h*0.55} ${-t.h*0.5},${t.h*0.05} ${t.h*0.5},${t.h*0.05}`} fill={p.tree}/>
+              <rect x="-1" y={t.h*0.05} width="2" height="5" fill={p.ink} opacity="0.5"/>
+            </g>
+          ))}
+        </g>
+
+        {/* Vallei-vloer middengrond */}
+        <path d="M 0 290 Q 200 278 400 285 Q 600 292 800 280 L 800 365 L 0 365 Z" fill={p.hillMid}/>
+        <rect x="0" y="290" width="800" height="130" fill={`url(#vDots${p.id})`}/>
+
+        {/* Boerderij silhouet */}
+        <g transform="translate(460 285)">
+          <rect x="-24" y="-20" width="48" height="22" fill={p.ink} opacity="0.85"/>
+          <polygon points="-28,-20 0,-40 28,-20" fill={p.ink}/>
+          {/* Schoorsteen */}
+          <rect x="10" y="-36" width="5" height="10" fill={p.ink}/>
+          {/* Verlichte raampjes */}
+          <rect x="-18" y="-14" width="6" height="6" fill={p.skyTop} opacity="0.85"/>
+          <rect x="-6" y="-14" width="6" height="6" fill={p.skyTop} opacity="0.85"/>
+          <rect x="12" y="-14" width="6" height="6" fill={p.skyTop} opacity="0.85"/>
+          {/* Deur */}
+          <rect x="-3" y="-8" width="6" height="10" fill={p.tree} opacity="0.7"/>
+        </g>
+
+        {/* Hekje langs weide */}
+        <g stroke={p.ink} strokeWidth="1.2" opacity="0.55">
+          <line x1="0" y1="350" x2="800" y2="346"/>
+          {[40, 90, 140, 240, 320, 400, 470, 540, 610, 680, 750].map((x, i) => (
+            <line key={i} x1={x} y1="346" x2={x} y2="358"/>
+          ))}
+        </g>
+
+        {/* Schipbeek — meanderende beek */}
+        <path d="M -10 325 Q 110 308 220 320 Q 330 332 440 318 Q 560 302 680 320 Q 750 330 810 322"
+          fill="none" stroke={`url(#vWater${p.id})`} strokeWidth="13" strokeLinecap="round"/>
+        {/* Glinstering op water */}
+        <path d="M -10 325 Q 110 308 220 320 Q 330 332 440 318 Q 560 302 680 320 Q 750 330 810 322"
+          fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity="0.4" strokeDasharray="10 22">
+          <animate attributeName="stroke-dashoffset" from="0" to="-32" dur="6s" repeatCount="indefinite"/>
+        </path>
+
+        {/* Knotwilgen langs de beek */}
+        <g>
+          <g transform="translate(70 318)">
+            <ellipse cx="0" cy="-11" rx="14" ry="11" fill={p.tree}/>
+            <ellipse cx="-7" cy="-7" rx="6" ry="5" fill={p.tree} opacity="0.85"/>
+            <ellipse cx="6" cy="-8" rx="5" ry="4" fill={p.tree} opacity="0.85"/>
+            <rect x="-2" y="0" width="4" height="9" fill={p.ink} opacity="0.6"/>
+          </g>
+          <g transform="translate(295 322)">
+            <ellipse cx="0" cy="-9" rx="11" ry="9" fill={p.tree}/>
+            <rect x="-2" y="0" width="4" height="7" fill={p.ink} opacity="0.6"/>
+          </g>
+          <g transform="translate(580 322)">
+            <ellipse cx="0" cy="-12" rx="15" ry="12" fill={p.tree}/>
+            <ellipse cx="-8" cy="-7" rx="5" ry="4" fill={p.tree} opacity="0.85"/>
+            <rect x="-2" y="0" width="4" height="10" fill={p.ink} opacity="0.6"/>
+          </g>
+          <g transform="translate(740 320)">
+            <ellipse cx="0" cy="-10" rx="12" ry="10" fill={p.tree}/>
+            <rect x="-2" y="0" width="4" height="8" fill={p.ink} opacity="0.6"/>
+          </g>
+        </g>
+
+        {/* Koe in de weide */}
+        <g transform="translate(180 376)">
+          <ellipse cx="0" cy="0" rx="13" ry="6.5" fill="#faf4e3" stroke={p.ink} strokeWidth="1.2"/>
+          <ellipse cx="6" cy="-2" rx="4" ry="3" fill={p.ink} opacity="0.55"/>
+          <ellipse cx="-4" cy="2" rx="3" ry="2" fill={p.ink} opacity="0.55"/>
+          <circle cx="-12" cy="-4" r="4.5" fill="#faf4e3" stroke={p.ink} strokeWidth="1.2"/>
+          <circle cx="-13" cy="-7" r="0.8" fill={p.ink}/>
+          <line x1="-6" y1="6" x2="-6" y2="14" stroke={p.ink} strokeWidth="1.5"/>
+          <line x1="3" y1="6" x2="3" y2="14" stroke={p.ink} strokeWidth="1.5"/>
+          <line x1="9" y1="5" x2="9" y2="13" stroke={p.ink} strokeWidth="1.5"/>
+          <line x1="-12" y1="5" x2="-12" y2="13" stroke={p.ink} strokeWidth="1.5"/>
+        </g>
+
+        {/* Voorgrond weide */}
+        <path d="M 0 360 Q 200 348 400 358 Q 600 368 800 350 L 800 420 L 0 420 Z" fill={p.hillFront}/>
+
+        {/* Weg in voorgrond */}
+        <path d="M -20 400 Q 200 388 400 395 Q 600 402 820 388"
+          fill="none" stroke={p.road} strokeWidth="20" strokeLinecap="round"/>
+        <path d="M -20 400 Q 200 388 400 395 Q 600 402 820 388"
+          fill="none" stroke="#fff" strokeWidth="1.5" strokeDasharray="8 10" opacity="0.6"/>
+
+        {/* Auto */}
+        <g>
+          <g transform="translate(-30 -10)">
+            <rect x="-18" y="-6" width="36" height="10" rx="3" fill={p.car}/>
+            <path d="M -12 -6 L -6 -14 L 8 -14 L 14 -6 Z" fill={p.car}/>
+            <rect x="-10" y="-12" width="8" height="6" fill={p.skyTop} opacity="0.8"/>
+            <rect x="0" y="-12" width="8" height="6" fill={p.skyTop} opacity="0.8"/>
+            <circle cx="-10" cy="5" r="3.5" fill={p.ink}/>
+            <circle cx="10" cy="5" r="3.5" fill={p.ink}/>
+            <circle cx="-10" cy="5" r="1.5" fill="#eee"/>
+            <circle cx="10" cy="5" r="1.5" fill="#eee"/>
+            <circle cx="18" cy="-2" r="2" fill={p.accent}/>
+          </g>
+          <animateMotion dur="22s" repeatCount="indefinite" rotate="auto"
+            path="M -20 400 Q 200 388 400 395 Q 600 402 820 388"/>
+        </g>
+
+        {/* Grasspritzers voorgrond */}
+        <g fill={p.hillFront} opacity="0.85">
+          <path d="M 50 416 q 2 -7 4 0 q 2 -7 4 0 z"/>
+          <path d="M 240 412 q 2 -7 4 0 q 2 -7 4 0 z"/>
+          <path d="M 410 414 q 2 -7 4 0 q 2 -7 4 0 z"/>
+          <path d="M 580 410 q 2 -7 4 0 q 2 -7 4 0 z"/>
+          <path d="M 720 415 q 2 -7 4 0 q 2 -7 4 0 z"/>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+// Wrapper that picks the right hero scene per route
+function RouteHero({ route, style, compact }) {
+  const palette = heroPaletteForRoute(route);
+  if (route.heroVariant === 'valley') {
+    return <AnimatedHeroValley palette={palette} style={style} compact={compact}/>;
+  }
+  return <AnimatedHero palette={palette} style={style} compact={compact}/>;
+}
+
+// ═══════════════════════════════════════════════════════════════════
 // InteractiveTulip — user-clickable diagrams.
 // ═══════════════════════════════════════════════════════════════════
 function InteractiveTulip({ color = '#2d3d2a', accent = '#c9572c', bg = '#f5efe3', size = 180 }) {
@@ -334,5 +533,5 @@ if (typeof document !== 'undefined' && !document.getElementById('shared-anim-sty
 }
 
 Object.assign(window, {
-  AnimatedHero, heroPaletteForRoute, InteractiveTulip, PhotoPuzzleDemo, Placeholder, CompassRose, RouteMap
+  AnimatedHero, AnimatedHeroValley, RouteHero, heroPaletteForRoute, InteractiveTulip, PhotoPuzzleDemo, Placeholder, CompassRose, RouteMap
 });

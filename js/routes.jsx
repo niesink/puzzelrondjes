@@ -65,6 +65,7 @@ const ROUTES = [
     region: "Zuid-Salland",
     tagline: "Door de stille vallei van de Schipbeek",
     status: "coming-soon",
+    heroVariant: "valley",
     accent: "#3a6a78",        // river blue-green
     accentSoft: "#8ba67c",    // river green
     color: "#2d3b3f",         // slate
