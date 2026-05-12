@@ -310,38 +310,48 @@ function RouteHero({ route, style, compact }) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-// InteractiveTulip — user-clickable diagrams.
+// InteractiveTulip — tulip diagram demo (bolletje-pijltje).
 // ═══════════════════════════════════════════════════════════════════
-function InteractiveTulip({ color = '#2d3d2a', accent = '#c9572c', bg = '#f5efe3', size = 180 }) {
+function InteractiveTulip({ color = '#2d3d2a', accent = '#c9572c', bg = '#f5efe3' }) {
   const options = [
-    { id: 'left', label: 'Links', km: 1.3, angle: 180 },
-    { id: 'straight', label: 'Rechtdoor', km: 2.1, angle: 90 },
-    { id: 'right', label: 'Rechts', km: 0.8, angle: 0 },
-    { id: 'round', label: 'Rotonde', km: 3.4, angle: -45 },
+    { id: 'left', label: 'Linksaf', km: 1.3, desc: 'kom je bij een afslag en ga je',
+      roads: [{x1:0,y1:48,x2:0,y2:0},{x1:0,y1:0,x2:-38,y2:0},{x1:0,y1:0,x2:0,y2:-38}],
+      arrow: [{x1:0,y1:0,x2:-28,y2:0}], arrowHead: '-34,0 -24,-4 -24,4' },
+    { id: 'right', label: 'Rechtsaf', km: 2.1, desc: 'kom je bij een t-splitsing en ga je',
+      roads: [{x1:0,y1:48,x2:0,y2:0},{x1:0,y1:0,x2:-38,y2:0},{x1:0,y1:0,x2:38,y2:0}],
+      arrow: [{x1:0,y1:0,x2:28,y2:0}], arrowHead: '34,0 24,-4 24,4' },
+    { id: 'round', label: '3e afslag', km: 3.4, desc: 'kom je bij een rotonde en neem je de',
+      roads: [{x1:0,y1:48,x2:0,y2:14},{x1:14,y1:0,x2:38,y2:0},{x1:0,y1:-14,x2:0,y2:-38},{x1:-14,y1:0,x2:-38,y2:0}],
+      circle: {cx:0,cy:0,r:14},
+      arrow: [{x1:-14,y1:0,x2:-28,y2:0}], arrowHead: '-34,0 -24,-4 -24,4' },
   ];
   const [sel, setSel] = React.useState(options[0]);
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-        <div style={{ width: size, height: size, position: 'relative', background: bg, borderRadius: '50%', border: `2px solid ${color}`, flexShrink: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
+        <div style={{ width: 140, height: 140, position: 'relative', background: bg, border: `2px solid ${color}`, flexShrink: 0 }}>
           <svg viewBox="-50 -50 100 100" style={{ width: '100%', height: '100%', display: 'block' }}>
-            <line x1="0" y1="40" x2="0" y2="8" stroke={color} strokeWidth="3" strokeLinecap="round"/>
-            <circle cx="0" cy="40" r="5" fill={color}/>
-            <g style={{ transition: 'transform .5s cubic-bezier(.3,1.4,.5,1)', transform: `rotate(${-sel.angle - 90}deg)`, transformOrigin: 'center' }}>
-              <line x1="0" y1="0" x2="0" y2="-36" stroke={accent} strokeWidth="3" strokeLinecap="round"/>
-              <polygon points="0,-44 -5,-34 5,-34" fill={accent}/>
-            </g>
-            <line x1="-42" y1="0" x2="-14" y2="0" stroke={color} strokeWidth="1" opacity="0.3"/>
-            <line x1="14" y1="0" x2="42" y2="0" stroke={color} strokeWidth="1" opacity="0.3"/>
-            <line x1="0" y1="-42" x2="0" y2="-14" stroke={color} strokeWidth="1" opacity="0.3"/>
+            {/* Zijwegen (lichtgrijs) */}
+            {sel.roads.map((rd, i) => (
+              <line key={i} x1={rd.x1} y1={rd.y1} x2={rd.x2} y2={rd.y2} stroke={color} strokeWidth={i === 0 ? 3 : 1.5} strokeLinecap="round" opacity={i === 0 ? 1 : 0.35}/>
+            ))}
+            {/* Rotonde cirkel */}
+            {sel.circle && <circle cx={sel.circle.cx} cy={sel.circle.cy} r={sel.circle.r} fill="none" stroke={color} strokeWidth="1.5" opacity="0.4"/>}
+            {/* Bolletje (startpunt) */}
+            <circle cx="0" cy="48" r="5" fill={color}/>
+            {/* Pijl (de richting die je op moet) */}
+            {sel.arrow.map((a, i) => (
+              <line key={i} x1={a.x1} y1={a.y1} x2={a.x2} y2={a.y2} stroke={accent} strokeWidth="3" strokeLinecap="round"/>
+            ))}
+            <polygon points={sel.arrowHead} fill={accent}/>
           </svg>
-          <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: accent, color: '#fff', fontSize: 11, padding: '2px 8px', borderRadius: 10, fontFamily: 'IBM Plex Mono, monospace', fontWeight: 500, whiteSpace: 'nowrap' }}>
+          <div style={{ position: 'absolute', top: 6, right: 8, background: accent, color: '#fff', fontSize: 11, padding: '2px 8px', fontFamily: 'IBM Plex Mono, monospace', fontWeight: 500, whiteSpace: 'nowrap' }}>
             {sel.km.toFixed(1)} km
           </div>
         </div>
         <div style={{ flex: 1, minWidth: 160 }}>
           <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.1em', color, opacity: 0.6, textTransform: 'uppercase', marginBottom: 8 }}>
-            probeer zelf
+            klik om te wisselen
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {options.map(o => (
@@ -354,8 +364,11 @@ function InteractiveTulip({ color = '#2d3d2a', accent = '#c9572c', bg = '#f5efe3
               }}>{o.label}</button>
             ))}
           </div>
-          <div style={{ marginTop: 12, fontSize: 13, color, opacity: 0.8, lineHeight: 1.5 }}>
-            Na <b>{sel.km.toFixed(1)} km</b> kom je op een kruising en sla je <b>{sel.label.toLowerCase()}</b>.
+          <div style={{ marginTop: 14, fontSize: 14, color, lineHeight: 1.6 }}>
+            <b>●</b> = waar je bent &nbsp; <b style={{color: accent}}>→</b> = waar je heen moet
+          </div>
+          <div style={{ marginTop: 6, fontSize: 13, color, opacity: 0.85, lineHeight: 1.5 }}>
+            Na <b>{sel.km.toFixed(1)} km</b> {sel.desc} <b>{sel.label.toLowerCase()}</b>.
           </div>
         </div>
       </div>
