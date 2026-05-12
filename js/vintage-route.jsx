@@ -29,15 +29,39 @@ function RoutePage({ route }) {
             <Ticket label="Prijs" value={r.price} sub="per auto" color={r.color}/>
           </div>
           {r.status === 'available' ? (
-            <a href={BRAND.wa} style={{
-              background: r.accent, color: VIN.cream, padding: '14px 24px',
-              fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 16,
-              textDecoration: 'none', marginTop: 28, display: 'inline-block',
-              border: `2px solid ${r.accent}`,
-            }}>Bestel deze rit →</a>
+            <div style={{ marginTop: 28, display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+              <a href={`https://wa.me/31614174474?text=${encodeURIComponent('Hoi! Ik wil graag de rit ' + r.name + ' bestellen.')}`} style={{
+                background: r.accent, color: VIN.cream, padding: '14px 24px',
+                fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 16,
+                textDecoration: 'none', display: 'inline-block',
+                border: `2px solid ${r.accent}`,
+              }}>Bestel via WhatsApp →</a>
+              <a href={`mailto:middelinbeweging@gmail.com?subject=${encodeURIComponent('Bestelling ' + r.name)}`} style={{
+                color: r.accent, padding: '14px 24px',
+                fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 16,
+                textDecoration: 'none', display: 'inline-block',
+                border: `2px solid ${r.accent}`,
+              }}>of per mail</a>
+            </div>
           ) : (
-            <div style={{ marginTop: 28, padding: '14px 20px', border: `2px dashed ${r.accent}`, color: r.accent, fontFamily: 'Fraunces, serif', fontStyle: 'italic', fontSize: 15, display: 'inline-block' }}>
-              Nog in ontwikkeling — <a href={BRAND.mail} style={{ color: r.accent }}>stuur een mail</a> voor updates.
+            <div style={{ marginTop: 28 }}>
+              <p style={{ fontSize: 15, opacity: 0.8, margin: '0 0 14px', fontStyle: 'italic', color: r.accent }}>
+                Deze rit is nog in ontwikkeling. Laat ons weten dat je interesse hebt, dan sturen we je een seintje zodra de route klaar is.
+              </p>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+              <a href={`https://wa.me/31614174474?text=${encodeURIComponent('Hoi! Ik ben geïnteresseerd in de rit ' + r.name + '. Laat me weten wanneer deze klaar is!')}`} style={{
+                background: r.accent, color: VIN.cream, padding: '14px 24px',
+                fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 16,
+                textDecoration: 'none', display: 'inline-block',
+                border: `2px solid ${r.accent}`,
+              }}>Houd me op de hoogte →</a>
+              <a href={`mailto:middelinbeweging@gmail.com?subject=${encodeURIComponent('Houd me op de hoogte — ' + r.name)}`} style={{
+                color: r.accent, padding: '14px 24px',
+                fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 16,
+                textDecoration: 'none', display: 'inline-block',
+                border: `2px solid ${r.accent}`,
+              }}>of per mail</a>
+              </div>
             </div>
           )}
         </div>
@@ -163,17 +187,41 @@ function RoutePage({ route }) {
               <p style={{ fontSize: 17, opacity: 0.85, margin: '0 auto 28px', maxWidth: 460 }}>
                 Stuur een bericht, kies je startpunt, ontvang de PDF. €10 per auto.
               </p>
-              <a href={BRAND.wa} style={{
-                background: r.accent, color: VIN.cream, padding: '16px 28px',
-                fontFamily: 'Fraunces, serif', fontWeight: 700, fontSize: 17,
-                textDecoration: 'none', display: 'inline-block',
-                border: `2px solid ${r.accent}`,
-              }}>Bestel via WhatsApp →</a>
+              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+                <a href={`https://wa.me/31614174474?text=${encodeURIComponent('Hoi! Ik wil graag de rit ' + r.name + ' bestellen.')}`} style={{
+                  background: r.accent, color: VIN.cream, padding: '16px 28px',
+                  fontFamily: 'Fraunces, serif', fontWeight: 700, fontSize: 17,
+                  textDecoration: 'none', display: 'inline-block',
+                  border: `2px solid ${r.accent}`,
+                }}>Bestel via WhatsApp →</a>
+                <a href={`mailto:middelinbeweging@gmail.com?subject=${encodeURIComponent('Bestelling ' + r.name)}`} style={{
+                  color: r.accentSoft, padding: '16px 28px',
+                  fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 17,
+                  textDecoration: 'none', display: 'inline-block',
+                  border: `2px solid ${r.accentSoft}`,
+                }}>of per mail</a>
+              </div>
             </>
           ) : (
-            <p style={{ fontSize: 17, opacity: 0.85, margin: '0 auto 16px', maxWidth: 460, fontStyle: 'italic' }}>
-              Deze rit is nog in ontwikkeling. <a href={BRAND.mail} style={{ color: r.accentSoft }}>Stuur een mail</a> voor een seintje zodra we live gaan.
-            </p>
+            <>
+              <p style={{ fontSize: 17, opacity: 0.85, margin: '0 auto 28px', maxWidth: 460, fontStyle: 'italic' }}>
+                Deze rit is nog in ontwikkeling. Laat ons weten dat je interesse hebt, dan sturen we je een seintje zodra de route klaar is.
+              </p>
+              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+                <a href={`https://wa.me/31614174474?text=${encodeURIComponent('Hoi! Ik ben geïnteresseerd in de rit ' + r.name + '. Laat me weten wanneer deze klaar is!')}`} style={{
+                  background: r.accent, color: VIN.cream, padding: '16px 28px',
+                  fontFamily: 'Fraunces, serif', fontWeight: 700, fontSize: 17,
+                  textDecoration: 'none', display: 'inline-block',
+                  border: `2px solid ${r.accent}`,
+                }}>Stuur een WhatsApp →</a>
+                <a href={`mailto:middelinbeweging@gmail.com?subject=${encodeURIComponent('Houd me op de hoogte — ' + r.name)}`} style={{
+                  color: r.accentSoft, padding: '16px 28px',
+                  fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 17,
+                  textDecoration: 'none', display: 'inline-block',
+                  border: `2px solid ${r.accentSoft}`,
+                }}>of per mail</a>
+              </div>
+            </>
           )}
         </div>
       </div>
