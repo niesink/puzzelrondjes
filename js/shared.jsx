@@ -381,10 +381,12 @@ function InteractiveTulip({ color = '#2d3d2a', accent = '#c9572c', bg = '#f5efe3
 // ═══════════════════════════════════════════════════════════════════
 function PhotoPuzzleDemo({ color = '#2d3d2a', accent = '#c9572c', bg = '#f5efe3' }) {
   const word = "KINDEREN";
-  const targetIdx = 3;
+  const targetIdx = 3; // 'D' at index 3
+  const [step, setStep] = React.useState(0); // 0, 1, 2
   const [typed, setTyped] = React.useState(Array(word.length).fill(''));
-  const [revealed, setRevealed] = React.useState(false);
   const refs = React.useRef([]);
+  const base = (typeof PAGE_BASE !== 'undefined' ? PAGE_BASE : '');
+
   const onChange = (i, v) => {
     const letter = v.toUpperCase().slice(-1);
     if (!/^[A-Z]?$/.test(letter)) return;
@@ -392,60 +394,119 @@ function PhotoPuzzleDemo({ color = '#2d3d2a', accent = '#c9572c', bg = '#f5efe3'
     if (letter && refs.current[i+1]) refs.current[i+1].focus();
   };
   const correct = typed.join('') === word;
+
+  const steps = [
+    { label: '①', title: 'Je krijgt een foto…', desc: 'In je boekje staat een foto van onderweg, maar een deel van de tekst is afgeplakt.' },
+    { label: '②', title: 'Je vindt de plek…', desc: 'Onderweg herken je de locatie en zie je wat er écht staat.' },
+    { label: '③', title: 'Je vult het in!', desc: 'Schrijf het verborgen woord op de streepjes. De gemarkeerde letter hoort bij een nummer — zo los je de eindpuzzel op.' },
+  ];
+
   return (
-    <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-      <div style={{ position: 'relative', width: 260, flexShrink: 0 }}>
-        <div style={{
-          width: 260, height: 180, background: `linear-gradient(135deg, ${color} 0%, ${color} 40%, ${accent} 40%, ${accent} 55%, ${bg} 55%)`,
-          borderRadius: 4, overflow: 'hidden', position: 'relative', border: `1.5px solid ${color}`
-        }}>
-          <div style={{ position: 'absolute', top: 20, left: 20, right: 20, bottom: 20, border: '1px dashed rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: bg, fontFamily: 'IBM Plex Mono, monospace', fontSize: 10, letterSpacing: '0.15em' }}>
-            <div style={{ opacity: 0.7 }}>[ FOTO ONDERWEG ]</div>
-            <div style={{ opacity: 0.5, marginTop: 4, fontSize: 9 }}>bord • boerderij • tegel</div>
-          </div>
-          <div style={{
-            position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)',
-            background: revealed ? 'transparent' : accent, color: revealed ? '#fff' : accent,
-            padding: '4px 10px', fontFamily: 'Special Elite, monospace', fontSize: 18, letterSpacing: '0.15em',
-            borderRadius: 2, fontWeight: 600, transition: 'background .3s',
-            textShadow: revealed ? '2px 2px 0 rgba(0,0,0,.4)' : 'none',
+    <div>
+      {/* Step indicator */}
+      <div style={{ display: 'flex', gap: 0, marginBottom: 20 }}>
+        {steps.map((s, i) => (
+          <button key={i} onClick={() => setStep(i)} style={{
+            flex: 1, padding: '10px 8px', border: `1.5px solid ${color}`,
+            borderRight: i < 2 ? 'none' : `1.5px solid ${color}`,
+            background: step === i ? color : 'transparent',
+            color: step === i ? bg : color,
+            fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.05em',
+            cursor: 'pointer', transition: 'all .2s',
+            borderRadius: i === 0 ? '4px 0 0 4px' : i === 2 ? '0 4px 4px 0' : 0,
           }}>
-            {revealed ? word : '████████'}
+            {s.label} {s.title}
+          </button>
+        ))}
+      </div>
+
+      {/* Step description */}
+      <div style={{ fontSize: 14, color, opacity: 0.8, marginBottom: 16, lineHeight: 1.5, minHeight: 42 }}>
+        {steps[step].desc}
+      </div>
+
+      {/* Step content */}
+      {step === 0 && (
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: 'inline-block', textAlign: 'center' }}>
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              <img src={base + 'assets/images/demo/demo.jpg'} alt="Foto met afgeplakte tekst"
+                style={{ width: '100%', maxWidth: 340, borderRadius: 4, border: `1.5px solid ${color}`, display: 'block' }}/>
+              <div style={{
+                position: 'absolute', bottom: 12, left: '50%', transform: 'translateX(-50%)',
+                background: accent, color: bg, padding: '3px 10px', borderRadius: 12,
+                fontFamily: 'IBM Plex Mono, monospace', fontSize: 10, letterSpacing: '0.1em', whiteSpace: 'nowrap',
+              }}>welk woord is afgeplakt?</div>
+            </div>
+            <div style={{ display: 'flex', gap: 4, justifyContent: 'center', marginTop: 14 }}>
+              {word.split('').map((_, i) => (
+                <div key={i} style={{
+                  width: 26, height: 32, borderBottom: `2px solid ${color}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: i === targetIdx ? accent + '22' : 'transparent',
+                  boxShadow: i === targetIdx ? `inset 0 0 0 1.5px ${accent}` : 'none',
+                  fontFamily: 'Special Elite, monospace', fontSize: 14, color, opacity: 0.4,
+                }}>{i === targetIdx ? '?' : ''}</div>
+              ))}
+            </div>
+            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 16, color, opacity: 0.5, marginTop: 6 }}>63&nbsp;&nbsp;&nbsp;</div>
           </div>
         </div>
-        <button onClick={() => setRevealed(r => !r)} style={{
-          marginTop: 8, border: `1px solid ${color}`, background: 'transparent', color,
-          padding: '4px 10px', borderRadius: 14, fontSize: 11, cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '0.05em',
-        }}>{revealed ? '◐ verberg' : '◑ toon oplossing'}</button>
-      </div>
-      <div style={{ flex: 1, minWidth: 220 }}>
-        <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.1em', color, opacity: 0.6, textTransform: 'uppercase', marginBottom: 8 }}>
-          vul het afgeplakte woord in
-        </div>
-        <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
-          {word.split('').map((_, i) => (
-            <input key={i} ref={el => refs.current[i] = el}
-              value={typed[i]} onChange={e => onChange(i, e.target.value)}
-              maxLength="1"
-              style={{
-                width: 26, height: 32, border: 'none',
-                borderBottom: `2px solid ${color}`,
-                background: i === targetIdx ? accent + '22' : 'transparent',
-                textAlign: 'center', fontFamily: 'Special Elite, monospace', fontSize: 18,
-                color, outline: 'none', padding: 0,
-                boxShadow: i === targetIdx ? `inset 0 0 0 1.5px ${accent}` : 'none',
-              }}/>
-          ))}
-        </div>
-        <div style={{ fontSize: 12, color, opacity: 0.75, lineHeight: 1.5 }}>
-          Op de plek van <span style={{ background: accent + '33', padding: '0 4px', borderRadius: 2 }}>het vakje</span> staat een letter die bij <b>63</b> hoort.
-        </div>
-        {correct && (
-          <div style={{ marginTop: 10, padding: '8px 12px', background: color, color: bg, borderRadius: 4, fontSize: 13, fontWeight: 600, display: 'inline-block' }}>
-            ✓ Klopt! 63 = D
+      )}
+
+      {step === 1 && (
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+          <div style={{ textAlign: 'center' }}>
+            <img src={base + 'assets/images/demo/demo.jpg'} alt="Afgeplakt"
+              style={{ width: 160, borderRadius: 4, border: `1.5px solid ${color}33`, display: 'block', opacity: 0.5 }}/>
+            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10, color, opacity: 0.5, marginTop: 6 }}>in je boekje</div>
           </div>
-        )}
-      </div>
+          <div style={{ fontSize: 24, color: accent, fontWeight: 700, paddingBottom: 30 }}>→</div>
+          <div style={{ textAlign: 'center' }}>
+            <img src={base + 'assets/images/demo/clear.jpg'} alt="Echte situatie onderweg"
+              style={{ width: 200, borderRadius: 4, border: `1.5px solid ${color}`, display: 'block' }}/>
+            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10, color: accent, marginTop: 6, fontWeight: 600 }}>langs de route!</div>
+          </div>
+        </div>
+      )}
+
+      {step === 2 && (
+        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+          <div style={{ textAlign: 'center', flexShrink: 0 }}>
+            <img src={base + 'assets/images/demo/clear.jpg'} alt="Oplossing"
+              style={{ width: 180, borderRadius: 4, border: `1.5px solid ${color}`, display: 'block' }}/>
+          </div>
+          <div style={{ flex: 1, minWidth: 200 }}>
+            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.1em', color, opacity: 0.6, textTransform: 'uppercase', marginBottom: 10 }}>
+              vul het afgeplakte woord in
+            </div>
+            <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
+              {word.split('').map((_, i) => (
+                <input key={i} ref={el => refs.current[i] = el}
+                  value={typed[i]} onChange={e => onChange(i, e.target.value)}
+                  maxLength="1"
+                  style={{
+                    width: 28, height: 34, border: 'none',
+                    borderBottom: `2px solid ${color}`,
+                    background: i === targetIdx ? accent + '22' : 'transparent',
+                    textAlign: 'center', fontFamily: 'Special Elite, monospace', fontSize: 18,
+                    color, outline: 'none', padding: 0,
+                    boxShadow: i === targetIdx ? `inset 0 0 0 1.5px ${accent}` : 'none',
+                  }}/>
+              ))}
+            </div>
+            <div style={{ fontSize: 12, color, opacity: 0.75, lineHeight: 1.6 }}>
+              De letter in <span style={{ background: accent + '33', padding: '1px 5px', borderRadius: 2, fontWeight: 600 }}>het gemarkeerde vakje</span> hoort bij nummer <b>63</b>.
+              <br/>Zo spaar je letters en los je de eindpuzzel op!
+            </div>
+            {correct && (
+              <div style={{ marginTop: 12, padding: '8px 14px', background: color, color: bg, borderRadius: 4, fontSize: 13, fontWeight: 600, display: 'inline-block' }}>
+                ✓ Klopt! 63 = D
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
