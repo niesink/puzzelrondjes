@@ -54,7 +54,7 @@ const ROUTES = [
     intro: "Een puzzelrit door het hart van Overijssel. Navigeer met bolletje-en-pijltje, los raadsels op en ontdek verborgen parels in Salland. Buurtschap Middel als stralend middelpunt.",
     highlights: [
       "Door het coulisselandschap van Salland",
-      "Langs de IJsseldijk en door Buurtschap Middel",
+      "Kronkelend langs dorpjes en buurtschappen tussen Raalte en Diepenveen",
       "4 startpunten om uit te kiezen",
     ],
   },
