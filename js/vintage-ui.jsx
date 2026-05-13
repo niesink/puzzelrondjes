@@ -33,7 +33,7 @@ function Stamp({ children, color = VIN.defaultAccent, rotate = -8, style }) {
       display: 'inline-block', border: `2px solid ${color}`, color, padding: '4px 10px',
       fontFamily: 'Special Elite, monospace', fontSize: 11, letterSpacing: '0.15em',
       textTransform: 'uppercase', transform: `rotate(${rotate}deg)`,
-      boxShadow: 'inset 0 0 0 1px ' + color + '33', opacity: 0.85, ...style,
+      background: VIN.cream, boxShadow: 'inset 0 0 0 1px ' + color + '33', opacity: 0.85, ...style,
     }}>{children}</div>
   );
 }
