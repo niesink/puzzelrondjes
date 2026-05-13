@@ -445,11 +445,11 @@ function PhotoPuzzleDemo({ color = '#2d3d2a', accent = '#c9572c', bg = '#f5efe3'
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: i === targetIdx ? accent + '22' : 'transparent',
                   boxShadow: i === targetIdx ? `inset 0 0 0 1.5px ${accent}` : 'none',
-                  fontFamily: 'Special Elite, monospace', fontSize: 14, color, opacity: 0.4,
+                  fontFamily: 'Special Elite, monospace', fontSize: 14, color, opacity: 1.0,
                 }}>{i === targetIdx ? '?' : ''}</div>
               ))}
             </div>
-            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 16, color, opacity: 0.5, marginTop: 6 }}>63&nbsp;&nbsp;&nbsp;</div>
+            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 16, color, opacity: 1.0, marginTop: 6 }}>63&nbsp;&nbsp;&nbsp;</div>
           </div>
         </div>
       )}

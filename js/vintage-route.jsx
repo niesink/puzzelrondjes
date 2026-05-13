@@ -36,7 +36,7 @@ function RoutePage({ route }) {
                 textDecoration: 'none', display: 'inline-block',
                 border: `2px solid ${r.accent}`,
               }}>Bestel via WhatsApp →</a>
-              <a href={`mailto:middelinbeweging@gmail.com?subject=${encodeURIComponent('Bestelling ' + r.name)}`} style={{
+              <a href={`mailto:puzzelrondjes@gmail.com?subject=${encodeURIComponent('Bestelling ' + r.name)}`} style={{
                 color: r.accent, padding: '14px 24px',
                 fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 16,
                 textDecoration: 'none', display: 'inline-block',
@@ -55,7 +55,7 @@ function RoutePage({ route }) {
                 textDecoration: 'none', display: 'inline-block',
                 border: `2px solid ${r.accent}`,
               }}>Houd me op de hoogte →</a>
-              <a href={`mailto:middelinbeweging@gmail.com?subject=${encodeURIComponent('Houd me op de hoogte — ' + r.name)}`} style={{
+              <a href={`mailto:puzzelrondjes@gmail.com?subject=${encodeURIComponent('Houd me op de hoogte — ' + r.name)}`} style={{
                 color: r.accent, padding: '14px 24px',
                 fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 16,
                 textDecoration: 'none', display: 'inline-block',
@@ -194,7 +194,7 @@ function RoutePage({ route }) {
                   textDecoration: 'none', display: 'inline-block',
                   border: `2px solid ${r.accent}`,
                 }}>Bestel via WhatsApp →</a>
-                <a href={`mailto:middelinbeweging@gmail.com?subject=${encodeURIComponent('Bestelling ' + r.name)}`} style={{
+                <a href={`mailto:puzzelrondjes@gmail.com?subject=${encodeURIComponent('Bestelling ' + r.name)}`} style={{
                   color: r.accentSoft, padding: '16px 28px',
                   fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 17,
                   textDecoration: 'none', display: 'inline-block',
@@ -214,7 +214,7 @@ function RoutePage({ route }) {
                   textDecoration: 'none', display: 'inline-block',
                   border: `2px solid ${r.accent}`,
                 }}>Stuur een WhatsApp →</a>
-                <a href={`mailto:middelinbeweging@gmail.com?subject=${encodeURIComponent('Houd me op de hoogte — ' + r.name)}`} style={{
+                <a href={`mailto:puzzelrondjes@gmail.com?subject=${encodeURIComponent('Houd me op de hoogte — ' + r.name)}`} style={{
                   color: r.accentSoft, padding: '16px 28px',
                   fontFamily: 'Fraunces, serif', fontWeight: 600, fontSize: 17,
                   textDecoration: 'none', display: 'inline-block',
