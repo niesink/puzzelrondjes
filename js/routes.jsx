@@ -6,7 +6,7 @@ const BRAND = {
   blurb: "Stap in de auto en beleef onvergetelijke puzzelritten. Bolletje-pijltje-navigatie, raadsels onderweg, verborgen parels langs de weg. Gemaakt met liefde door Anne & Luke uit Buurtschap Middel.",
   wa: "https://wa.me/31614174474?text=Hoi!%20Ik%20wil%20graag%20meedoen%20aan%20een%20puzzelrit!",
   mail: "mailto:puzzelrondjes@gmail.com?subject=Bestelling%20puzzelrit",
-  fb: "https://www.facebook.com/puzzelrondjes/",
+  fb: "https://www.facebook.com/puzzelrondjes.nl/",
   ig: "https://www.instagram.com/puzzelrondjes",
   about: "Wij zijn Anne en Luke, trotse inwoners van Buurtschap Middel. Onze gezamenlijke hobby? Puzzelen en autorijden. Na heel wat kilometers en gepuzzel in andere ritten, begon het te kriebelen: dat kunnen wij ook! Sindsdien zijn we routes aan het ontwerpen door de gebieden die we het best kennen — eentje tegelijk, en telkens met dezelfde aanpak: mooie wegen, slimme raadsels, en een sterke finish.",
 };
