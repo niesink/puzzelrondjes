@@ -140,7 +140,7 @@ function HomePage() {
           </div>
           <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '0.2em', color: VIN.ink, opacity: 0.6, textTransform: 'uppercase', textAlign: 'right' }}>
             {ROUTES.filter(r => r.status === 'available').length} beschikbaar<br/>
-            {ROUTES.filter(r => r.status === 'coming-soon').length} binnenkort
+            {ROUTES.filter(r => r.status === 'coming-soon').length || 'meer'} binnenkort
           </div>
         </div>
         <div className="pr-routes-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 32 }}>

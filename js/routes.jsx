@@ -64,19 +64,20 @@ const ROUTES = [
     number: "02",
     region: "Zuid-Salland",
     tagline: "Door de stille vallei van de Schipbeek",
-    status: "coming-soon",
+    status: "available",
     heroVariant: "valley",
     accent: "#3a6a78",        // river blue-green
     accentSoft: "#8ba67c",    // river green
     color: "#2d3b3f",         // slate
-    distance: "≈ 65 km",
+    distance: "≈ 70 km",
     duration: "2 – 3 uur",
     price: "€ 10",
-    startpoints: ["Bathmen", "Holten", "Harfsen"],
+    startpoints: ["Bathmen", "Holten", "Harfsen", "Laren"],
     mapPlaces: [
       { id: 'Bathmen', x: 140, y: 160, big: true },
       { id: 'Holten', x: 360, y: 150, big: true },
-      { id: 'Harfsen', x: 255, y: 330, big: true },
+      { id: 'Harfsen', x: 205, y: 310, big: true },
+      { id: 'Laren', x: 335, y: 340, big: true },
     ],
     mapRegion: "M 80 100 Q 220 70 380 100 T 460 200 Q 470 320 430 420 T 280 470 Q 150 460 90 390 T 70 220 Z",
     mapRiver: { path: "M 40 280 Q 150 250 260 270 Q 370 290 470 260", label: "Schipbeek", labelAt: { x: 42, y: 268 } },
@@ -85,7 +86,7 @@ const ROUTES = [
     highlights: [
       "Door de stille Schipbeekvallei",
       "Langs oude boerderijen en Sallands coulisselandschap",
-      "Compleet nieuwe puzzels",
+      "Nieuwe puzzels",
     ],
   },
 ];
