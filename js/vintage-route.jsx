@@ -100,7 +100,7 @@ function RoutePage({ route }) {
             Begin waar het jou <span style={{ fontStyle: 'italic', color: r.color }}>uitkomt.</span>
           </h2>
           <p style={{ marginTop: 16, opacity: 0.85, lineHeight: 1.65 }}>
-            Je kiest één van de {r.startpoints.length} startpunten. De rit is een rondje — eindigt altijd op hetzelfde plek waar je begon.
+            Je kiest één van de {r.startpoints.length} startpunten. De rit is een rondje en eindigt dus altijd op dezelfde plek als waar je begon.
           </p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 20 }}>
             {r.startpoints.map(s => (
